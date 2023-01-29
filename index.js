@@ -8,6 +8,7 @@ morgan.token('body', (req, res) => JSON.stringify(req.body));
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms - :body'));
 app.use(cors())
 app.use(express.json())
+app.use(express.static('build'))
 
   const generateId = () => {
     const maxId = persons.length > 0
@@ -81,30 +82,32 @@ app.delete('/api/persons/:id', (request, response) => {
 
 let persons = [
     {
-        id: 1,
         name: "Arto Hellas",
-        number:123123
+        number:"123123",
+        id: 1,
       },
       {
+
+        name: "Ada Lovelace",
+        number: "3",
         id: 2,
-        content: "Ada Lovelace",
-        number: 3
       },
       {
-        id: 3,
-        content: "Dan bramov",
-        number: 12312399
+        name: "Dan bramov",
+        number: "12312399",
+        id: 3
       },
       {
+
+        name: "Mary Poppendick",
+        number: "004005",
         id: 4,
-        content: "Mary Poppendick",
-        number: 004005
       }
 ]
 
     
 
-const PORT = 3001
+const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })
