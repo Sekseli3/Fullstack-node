@@ -1,12 +1,12 @@
 const express = require('express')
+const cors = require('cors')
 var morgan = require('morgan')
 const app = express()
 
 //app.use(morgan('tiny'))
 morgan.token('body', (req, res) => JSON.stringify(req.body));
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms - :body'));
-
-
+app.use(cors())
 app.use(express.json())
 
   const generateId = () => {
